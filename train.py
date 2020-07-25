@@ -84,9 +84,9 @@ class GenerativeAgent():
                 if len(image_batch) >= self.BATCH_SIZE:
                     loss = self.step(np.array(image_batch).reshape(-1,28,28,1))
                     image_batch = []
-                    if not index % 100: 
-                        self.checkpoint.save(file_prefix=self.CHECKPOINT_PATH)
-                        print(f"episode: {episode} index: {index} loss: {loss}")
+            
+            self.checkpoint.save(file_prefix=self.CHECKPOINT_PATH)
+            print(f"episode: {episode} index: {index} loss: {loss}")
 
     def initialize_checkpoint(self):
         self.checkpoint = tf.train.Checkpoint(generator=self.generator, discriminator=self.discriminator)
